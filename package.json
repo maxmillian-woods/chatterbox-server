@@ -1,20 +1,19 @@
 {
-  "name": "chatterbox-server",
-  "version": "1.1.0",
-  "description": "Implement a chat server",
+  "name": "chatterbox-client",
+  "version": "2.0.0",
+  "description": "Build a component-based chat-client using jQuery",
   "author": "Hack Reactor <curriculum.team@hackreactor.com>",
   "license": "UNLICENSED",
-  "private": true,
-  "engines": {
-    "node": ">=4.0.0"
-  },
-  "scripts": {
-    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
-    "start": "node server/basic-server.js",
-    "start:es6": "babel-node server/basic-server.js",
-    "test": "mocha server/spec",
-    "test:es6": "mocha --compilers js:babel-register server/spec",
-    "lint": "eslint ./"
+  "dependencies": {
+    "chai": "^4.1.2",
+    "connect": "^3.7.0",
+    "eslint": "^5.16.0",
+    "jquery": "^3.3.1",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1",
+    "serve-static": "^1.14.1",
+    "sinon": "^6.3.4",
+    "underscore": "^1.9.1"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
@@ -24,6 +23,14 @@
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "mocha": "^2.4.5",
     "request": "^2.70.0"
+  },
+  "scripts": {
+    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
+    "start": "node server/basic-server.js",
+    "start:es6": "babel-node server/basic-server.js",
+    "test": "nyc mocha server/spec",
+    "test:es6": "mocha --compilers js:babel-register server/spec",
+    "lint": "eslint ./"
   },
   "babel": {
     "presets": [

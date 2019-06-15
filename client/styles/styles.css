@@ -1,0 +1,147 @@
+body {
+    background-color: lightcyan !important;
+    text-align: center;
+    padding: 0 25px;
+    font-family: arial, sans-serif;
+}
+
+#main, #chats {
+    width: 500px;
+    margin: auto;
+    text-align: left;
+    /* background: white; */
+    padding: 50px 60px;
+    /* border: solid #ddd; */
+    border-width: 0 1px 1px 1px;
+}
+
+#main h1 {
+    margin-top: 0;
+    font-size: 35px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+#main h1 span {
+    font-style:italic;
+}
+
+#main ul {
+    padding-left: 20px;
+}
+
+#main .error {
+    border: 1px solid red;
+    background: #FDEFF0;
+    padding: 20px;
+}
+
+#main .success {
+    margin-top: 25px;
+}
+
+#main .success code {
+    font-size: 12px;
+    color: green;
+    line-height: 13px;
+} */
+
+form {
+    padding: 20px;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+form input[type=text] {
+    margin-right: 10px;
+    width: 70%;
+    font-size: 12px;
+    padding: 5px;
+    margin: auto;
+}
+
+.chat {
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #eee;
+    word-wrap: break-word;
+}
+
+.chat .username {
+    font-weight: 800;
+}
+
+.chat:hover {
+    background-color: #ddd;
+}
+
+.spinner {
+    float: right;
+    height: 46px;
+    margin-bottom: 5px;
+}
+
+.spinner img {
+    padding: 10px;
+}
+
+.friend {
+    color: #fff;
+    background-color: #0090da;
+}
+
+.nav-pills-custom>li>a {
+    color: lightgrey;
+}
+
+.nav-pills-custom>li>a:focus,
+.nav-pills-custom>li>a:hover {
+    background: none;
+    color: grey;
+}
+
+.panel-custom>.panel-heading {
+    background: none;
+    border-bottom: none;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+    background-color: #337AB7;
+}
+.form-control-nav{
+    background-color:#F0FFFF;
+  border: lightgrey solid 1px;
+    border-radius:15px;
+}
+.navbar-default .navbar-collapse, .navbar-default{
+background-color: white;
+}
+.panel-footer{
+    background-color: lightcyan;
+}
+.well{
+    background-color: lightcyan;
+}
+a, h4{
+    color:#60A6C1;
+}
+h4:hover {
+    text-decoration: underline;
+}
+
+div.panel-heading{
+    padding-top:15px;
+    padding-bottom: 0px;
+}
+.form-control-feedback{
+    line-height:27px;
+}
+.panel-info{
+    border:1px lightgrey solid;
+}
+.tweet{
+    border: 1px solid black;
+    border-radius: 3px;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+}
