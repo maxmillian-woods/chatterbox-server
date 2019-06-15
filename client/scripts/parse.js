@@ -1,6 +1,5 @@
 const Parse = {
-
-  server: 'http://localhost:3000/classes/messages',
+  server: '/classes/messages',
 
   create(message, successCB, errorCB = null) {
     $.ajax({
@@ -9,9 +8,11 @@ const Parse = {
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: successCB,
-      error: errorCB || (error => {
-        console.error('chatterbox: Failed to fetch messages', error);
-      })
+      error:
+        errorCB ||
+        (error => {
+          console.error('chatterbox: Failed to fetch messages', error);
+        })
     });
   },
 
@@ -22,14 +23,14 @@ const Parse = {
       data: { order: '-createdAt' },
       contentType: 'application/json',
       success: successCB,
-      error: errorCB || (error => {
-        console.error('chatterbox: Failed to fetch messages', error);
-      })
+      error:
+        errorCB ||
+        (error => {
+          console.error('chatterbox: Failed to fetch messages', error);
+        })
     });
   }
-
 };
-
 
 /* Example of helper function */
 // function dogController(){
@@ -41,4 +42,3 @@ const Parse = {
 // }
 
 // $('#getDog').click(dogController)
-
