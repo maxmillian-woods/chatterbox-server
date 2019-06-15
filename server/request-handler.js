@@ -11,8 +11,10 @@ this file and include it in basic-server.js so that it actually works.
 *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
 
 **************************************************************/
-var storage = {};
-storage.results = [];
+// var storage = {};
+// storage.results = [];
+var fs = require('fs');
+var path = require('path');
 
 var defaultCorsHeaders = {
   'access-control-allow-origin': '*',
@@ -21,38 +23,64 @@ var defaultCorsHeaders = {
   'access-control-max-age': 10 // Seconds.
 };
 
-var sendResponse = function(response, data, code) {
+var sendResponse = function(response, code) {
   code = code || 200;
-
-  response.writeHead(code, defaultCorsHeaders);
-  response.end(JSON.stringify(data));
+  fs.readFile(path.join(__dirname, 'messages.json'), (err, data) => {
+    if (err) {
+      let storage = { results: [] };
+      fs.writeFile(
+        path.join(__dirname, 'messages.json'),
+        JSON.stringify(storage),
+        () => {
+          response.writeHead(200, defaultCorsHeaders);
+          response.end(JSON.stringify(storage));
+        }
+      );
+    } else {
+      response.writeHead(code, defaultCorsHeaders);
+      response.end(data);
+    }
+  });
 };
 
 var methods = {
-  'GET': function(request, response) {
-    sendResponse(response, storage);
+  GET: function(request, response) {
+    sendResponse(response);
   },
 
-  'POST': function(request, response) {
+  POST: function(request, response) {
     var data = '';
     request.on('data', function(chunk) {
       data += chunk;
     });
 
     request.on('end', function() {
-      storage.results.push(JSON.parse(data));
+      fs.readFile(path.join(__dirname, 'messages.json'), (err, buffer) => {
+        let storage = JSON.parse(buffer);
+        storage.results.push(JSON.parse(data));
+        fs.writeFile(
+          path.join(__dirname, 'messages.json'),
+          JSON.stringify(storage),
+          err => {
+            response.writeHead(201, defaultCorsHeaders);
+            response.end();
+          }
+        );
+      });
     });
 
-    sendResponse(response, data, 201);
+    // sendResponse(response, data, 201);
   },
 
-  'OPTIONS': function(request, response) {
+  OPTIONS: function(request, response) {
     sendResponse(response, null);
   }
 };
 
 module.exports.requestHandler = function(request, response) {
-  console.log('Serving request type ' + request.method + ' for url ' + request.url);
+  console.log(
+    'Serving request type ' + request.method + ' for url ' + request.url
+  );
   var action = methods[request.method];
   console.log(request.url);
   if (action && request.url.includes('/classes/messages')) {
